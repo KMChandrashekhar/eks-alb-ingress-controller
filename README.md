@@ -19,3 +19,15 @@ eksctl utils associate-iam-oidc-provider --cluster alb-demo-cluster  --approve -
 ```
 curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.11.0/docs/install/iam_policy.json
 ```
+### Create an IAM policy using the policy downloaded in the previous step.
+
+ - Creates a new IAM policy named AWSLoadBalancerControllerIAMPolicy.
+ - This policy allows the Load Balancer Controller to make AWS API calls.
+
+```
+aws iam create-policy \
+    --policy-name AWSLoadBalancerControllerIAMPolicy \
+    --policy-document file://iam_policy.json
+```
+
+### Set up an IAM service account in an EKS cluster, allowing the AWS Load Balancer Controller to manage AWS Load Balancers on behalf of the Kubernetes cluster.
