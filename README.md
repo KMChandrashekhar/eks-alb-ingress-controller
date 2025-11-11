@@ -8,5 +8,6 @@
  - Allows IAM roles to be used inside the Kubernetes cluster.
 
 ```
-
+eksctl utils associate-iam-oidc-provider --cluster alb-demo-cluster  --approve --region us-east-2
+```
 
